@@ -50,6 +50,22 @@ public class ChangeInputOrderTest {
     }
 
     @Test
+    public void main1() {
+        System.setIn(new ByteArrayInputStream(
+                ("3\n" +
+                        "1\n" +
+                        "2\n" +
+                        "3\n").getBytes()
+        ));
+
+        ChangeInputOrder.main();
+        assertEquals(
+                "2" + System.lineSeparator() +
+                        "1" + System.lineSeparator() +
+                        "3" + System.lineSeparator(), outContent.toString());
+    }
+
+    @Test
     public void wrong() {
         System.setIn(new ByteArrayInputStream(
                 ("4\n" +
