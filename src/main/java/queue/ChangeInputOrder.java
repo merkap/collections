@@ -9,9 +9,12 @@ public class ChangeInputOrder {
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
         Deque<Integer> deque = new ArrayDeque<>(i);
-        for (int j = 1; j <= i; j++)
-            if (j % 2 == 0) deque.offerFirst(scanner.nextInt());
-            else deque.offerLast(scanner.nextInt());
-        for (int j = 0; j < i; j++) System.out.println(deque.pollFirst());
+        Integer number;
+        for (int j = 1; j <= i; j++) {
+            number = scanner.nextInt();
+            if (number % 2 == 0) deque.addFirst(number);
+            else deque.addLast(number);
+        }
+        for (int j = 0; j < i; j++) System.out.println(deque.removeFirst());
     }
 }

@@ -21,14 +21,6 @@ public class StackSimulatorTest {
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
-        System.setIn(new ByteArrayInputStream(
-                ("5\n" +
-                        "push 2\n" +
-                        "push 1\n" +
-                        "max\n" +
-                        "pop\n" +
-                        "max\n").getBytes()
-        ));
     }
 
     @After
@@ -40,13 +32,50 @@ public class StackSimulatorTest {
 
     @Test
     public void main() {
+        System.setIn(new ByteArrayInputStream(
+                ("5\n" +
+                        "push 2\n" +
+                        "push 1\n" +
+                        "max\n" +
+                        "pop\n" +
+                        "max\n").getBytes()
+        ));
         StackSimulator.main();
         assertEquals("2" + System.lineSeparator() +
                 "2" + System.lineSeparator(), outContent.toString());
     }
 
     @Test
+    public void main2() {
+        System.setIn(new ByteArrayInputStream(
+                ("10\n" +
+                        "push 2\n" +
+                        "push 1\n" +
+                        "push 1\n" +
+                        "max\n" +
+                        "pop\n" +
+                        "pop\n" +
+                        "push 1\n" +
+                        "push 5\n" +
+                        "push 1\n" +
+                        "max\n").getBytes()
+        ));
+        StackSimulator.main();
+        assertEquals("2" + System.lineSeparator() +
+                "5" + System.lineSeparator(), outContent.toString());
+    }
+
+    @Test
     public void wrong() {
+        System.setIn(new ByteArrayInputStream(
+                ("5\n" +
+                        "push 2\n" +
+                        "push 1\n" +
+                        "max\n" +
+                        "pop\n" +
+                        "max\n").getBytes()
+        ));
+
         StackSimulator.main();
         assertNotEquals(" ", outContent.toString());
     }
